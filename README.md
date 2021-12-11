@@ -4,14 +4,15 @@ I will try my best to wrate a complete guide and documentation about that comple
 
 **Steps:**
 1. You have to install Python 3
-2. Use this Robotic arm: https://github.com/20sffactory/community_robot_arm 
-3. install OpenCv on your python environment
-3. use a Digital camera
-4. Mount the camera above the robotic arm at 90 degree position in such a way that it can capture the working area of the robotic arm clearly.
-5. use a (~50mm wide, please read the code and comments in the code for details) blue rectangle cardboard as a place holder of the robotic arm and place it where you will place the robotic arm and run the robot_position_estimation.py code
-6. This code will find the coordinates of the blue cardboard piece and considered it mid point as robotic arm origin.
-7. place the robotic arm above that bliue cardboard precisely.
-8. Now you can use the main code file. you have to calibrate the parameters in the code according to your environment and camera setup.
-9. There are a lot of things to learn first before understanding these codes
-10. Please watch tutorial videos from this great robotics cource:  http://www.robogrok.com/index.html
-11. Watach atleast these 3 videos to understand my codes: ![Contents](https://user-images.githubusercontent.com/25352528/116832263-a7fdb700-abcd-11eb-84db-5413ca39865c.jpg)
+2. Use this Robotic arm: https://github.com/20sffactory/community_robot_arm
+3. CAD Model : https://grabcad.com/library/robot-arm-community-version-cad-3d-printed-robotic-arm-1
+4. install OpenCv on your python environment
+5. use a Digital camera
+6. Mount the camera above the robotic arm at 90 degree position in such a way that it can capture the working area of the robotic arm clearly.
+7. use a (~50mm wide, please read the code and comments in the code for details) blue rectangle cardboard as a place holder of the robotic arm and place it where you will place the robotic arm and run the robot_position_estimation.py code
+8. This code will find the coordinates of the blue cardboard piece and considered it mid point as robotic arm origin.
+9. place the robotic arm above that bliue cardboard precisely.
+10. Now you can use the main code file. you have to calibrate the parameters in the code according to your environment and camera setup.
+11. There are a lot of things to learn first before understanding these codes
+12. Please watch tutorial videos from this great robotics cource:  http://www.robogrok.com/index.html
+13. Watach atleast these 3 videos to understand my codes: ![Contents](https://user-images.githubusercontent.com/25352528/116832263-a7fdb700-abcd-11eb-84db-5413ca39865c.jpg)
