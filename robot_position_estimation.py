@@ -31,7 +31,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 #Constants Declaration
-webcam_Resolution_Width	= 640.0
+webcam_Resolution_Width	= 640.0 #Change the resolution according to your Camera's resolution
 webcam_Resolution_Height = 480.0
 rectangle_width_in_mm = 49.0    #size of the calibration rectangle (longer side) along x-axis in mm.
 
@@ -42,33 +42,6 @@ angle = 0.0 #robotic arm rotation angle
 one_pixel_length = 0.0  #length of one pixel in cm units
 number_of_cm_in_Resolution_width = 0.0  #total number of cm in the camera resolution width
 
-#Reading Camera Matrix and Distortion Coefficients from YAML File
-with open(r'Camera Calibration Algorithms/2. camera_calibration_tool-master/calibration.yaml') as file:
-    documents = yaml.full_load(file)    #loading yaml file as Stream
-    camera_matrix = np.array(documents['camera_matrix'])    #extracting camera_matrix key and convert it into Numpy Array (2D Matrix)
-    distortion_coeff = np.array(documents['dist_coeff'])
-    extrinsic_matrix = np.array(documents['extrinsics_matrix']) 
-    # print ("\nIntrinsic Matrix\n",camera_matrix)
-    # print ("\nExtrinsic Matrix\n",extrinsic_matrix)
-    # print ("\nDistortion Coefficients\n",distortion_coeff)
-    print("\nCamera Matrices Loaded Succeccfully\n")
-    
-    
-def undistortImage(img): #Function to undistort a given image. Function inputs: image, camera matrix and distortion coefficients
-    try:    
-        mtx = camera_matrix
-        dist = distortion_coeff
-        #Now undistort the taken Image https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_calib3d/py_calibration/py_calibration.html
-        h,  w = img.shape[:2]
-        #alpha = 0   #use to crop the undistorted image
-        alpha = 1    #use not to crop the undistorted image (adding black pixel)
-        newcameramtx, roi=cv2.getOptimalNewCameraMatrix(mtx,dist,(w,h),alpha,(w,h))
-        #undistort
-        undist_image = cv2.undistort(img, mtx, dist, None, newcameramtx)
-        return (undist_image)   #return undistorted image
-    except:
-        print("Error while Undistorting Image")
-        pass
 
 def calculate_XYZ(u,v): #Function to get World Coordinates from Camera Coordinates in mm
         #https://github.com/pacogarcia3/hta0-horizontal-robot-arm/blob/9121082815e3e168e35346efa9c60bd6d9fdcef1/camera_realworldxyz.py#L105        
@@ -101,14 +74,13 @@ if __name__ == "__main__":
             #Now Place the base_plate_tool on the surface below the camera.
             while(1):
                 _,frame = cap.read()
-                #frame = undistortImage(frame)
                 # cv2.imshow("Live" , frame)
                 k = cv2.waitKey(5)
                 if k == 27: #exit by pressing Esc key
                     cv2.destroyAllWindows()
                     sys.exit()
                 if k == 13: #Save the centroid and angle values of the rectangle in a file
-                    result_file = r'Camera Calibration Algorithms/2. camera_calibration_tool-master/robot_position.yaml'    
+                    result_file = r'robot_position.yaml'    
                     try:
                         os.remove(result_file)  #Delete old file first
                     except:
@@ -178,7 +150,7 @@ if __name__ == "__main__":
                 #cm-per-pixel calculation
                 if(width != 0.0):
                     one_pixel_length = rectangle_width_in_mm/width #length of one pixel in mm (rectangle_width_in_mm/rectangle_width_in_pixels)
-                    number_of_cm_in_Resolution_width = (one_pixel_length*640)/10 #in cm
+                    number_of_cm_in_Resolution_width = (one_pixel_length*640)/10 #in cm #Change the resolution according to your Camera's resolution
                     print(number_of_cm_in_Resolution_width)
                 
                 
