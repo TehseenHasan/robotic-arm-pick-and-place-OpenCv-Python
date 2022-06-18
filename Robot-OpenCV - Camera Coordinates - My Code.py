@@ -5,7 +5,6 @@ import serial
 import sys
 import threading
 import yaml
-from simple_pid import PID
 import warnings
 warnings.filterwarnings("ignore")
 
